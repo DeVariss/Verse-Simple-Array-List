@@ -22,10 +22,13 @@ element_list<public> := class<final>:
 
     Remove<public>(Element: some_element)<transacts><decides>: some_element =
         Index := Wrapper.BackingArray.Find[option{Element}]
-        FoundElement := Wrapper.BackingArray[Index]?
+        return Remove[Index]
+
+    Remove<public>(Index: int)<transacts><decides>: some_element =
+        Element := Wrapper.BackingArray[Index]?
         set Wrapper.BackingArray = Wrapper.BackingArray.RemoveElement[Index] or Err("Failed to remove element from array.")
         set Size -= 1
-        return FoundElement
+        return Element
 
     Get<public>(Index: int)<transacts><decides>: some_element =
         IsValidIndex[Index]
