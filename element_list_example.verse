@@ -15,7 +15,7 @@ element_list<public> := class<final>:
         (set Wrapper.BackingArray[Size] = option{Element}) or Err("Failed to append element to back of array.")
         set Size += 1
 
-    Insert<public>(Index:int, Element: some_element)<transacts><decides>: void =
+    Insert<public>(Index: int, Element: some_element)<transacts><decides>: void =
         IsValidIndex[Index]
         set Wrapper.BackingArray = Wrapper.BackingArray.Insert[Index, array{option{Element}}] or Err("Failed to insert value into array.")
         set Size += 1
